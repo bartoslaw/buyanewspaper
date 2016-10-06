@@ -46,8 +46,11 @@ class Player(pygame.sprite.Sprite):
 		self.handle_collision(self.dx, self.dy, collided_sprites)
 		if self.is_interacting:
 			for target in collided_sprites:
-				if target != self and isinstance(target, collectiblegameobject.CollectibleGameObject):
-					target.interact() #to think of a better way
+				if target != self:
+					target.interact(self.interact_with_item) #to think of a better way
+
+	def interact_with_item(self, kind):
+		print kind
 
 	def rotate(self, angle = 90):
 		self.image, self.rect = self.rot_center(angle)

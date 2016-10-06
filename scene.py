@@ -12,7 +12,7 @@ class Scene:
 		self.scene_objects = scene_objects
 
 		self.scene_background = pygame.sprite.RenderPlain(self.background)
-		self.scene_sprites = pygame.sprite.RenderPlain(self.scene_objects, self.player)
+		self.scene_sprites = pygame.sprite.RenderPlain(self.player, self.scene_objects)
 
 	def get_background(self):
 		return self.scene_background
