@@ -1,4 +1,4 @@
-import pygame, math
+import pygame, math, collectiblegameobject
 from collections import namedtuple
 
 class Player(pygame.sprite.Sprite):
@@ -44,10 +44,10 @@ class Player(pygame.sprite.Sprite):
 
 	def update(self, collided_sprites = []):
 		self.handle_collision(self.dx, self.dy, collided_sprites)
-		#if self.is_interacting:
-		#	for target in collided_sprites:
-		#		if target != self:
-		#			target.interact() // to think of a better way
+		if self.is_interacting:
+			for target in collided_sprites:
+				if target != self and isinstance(target, collectiblegameobject.CollectibleGameObject):
+					target.interact() #to think of a better way
 
 	def rotate(self, angle = 90):
 		self.image, self.rect = self.rot_center(angle)
@@ -59,7 +59,7 @@ class Player(pygame.sprite.Sprite):
 
 	def handle_collision(self, dx, dy, collided_sprites = []):
 		for other in collided_sprites:
-			if other != self:
+			if other != self and not isinstance(other, collectiblegameobject.CollectibleGameObject):
 				(awayDx, awayDy) = self.move_after_collision(other, -1)
 				resistance = self.speed * 2
 				dx = dx + resistance * (awayDx)

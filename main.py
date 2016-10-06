@@ -1,4 +1,4 @@
-import pygame, scene, player, gameobject
+import pygame, scene, player, gameobject, collectiblegameobject
 from pygame.locals import *
  
 class Game:
@@ -8,7 +8,7 @@ class Game:
         self.size = self.weight, self.height = 720, 720
         self.background = pygame.Surface(self.size)
         self.scenes = ["some_path", "some_other_path", "etc_you_get_the_idea"]
-        self.current_scene = scene.Scene(self.scenes[0], player.Player(), [gameobject.GameObject("key.png", 400, 310), gameobject.GameObject("bed.png", 150, 150), gameobject.GameObject("desk.png", 350, 300)])
+        self.current_scene = scene.Scene(self.scenes[0], player.Player(), [collectiblegameobject.CollectibleGameObject("key.png", 0, 0), gameobject.GameObject("bed.png", 150, 150), gameobject.GameObject("desk.png", 350, 300)])
 
     def on_init(self):
         pygame.init()
