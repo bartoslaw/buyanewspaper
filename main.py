@@ -1,5 +1,6 @@
 import pygame, scene, player, gameobject, collectiblegameobject
 from pygame.locals import *
+from pygame.font import *
  
 class Game:
     def __init__(self):
@@ -14,6 +15,7 @@ class Game:
                 gameobject.GameObject("bed.png", 150, 150, "Luszko"), 
                 gameobject.GameObject("desk.png", 350, 300, "Dzwi")
             ])
+        self.font = pygame.font.Font("assets/BebasNeue.otf", 15)
 
     def on_init(self):
         pygame.init()
@@ -37,7 +39,10 @@ class Game:
     	self._display_surf.blit(self.background, (0, 0))
     	self.current_scene.get_background().draw(self._display_surf)
     	self.current_scene.get_sprites().draw(self._display_surf)
-    	pygame.display.flip()
+        label = self.font.render("Some text!", 1, (255,255,0))
+        self._display_surf.blit(label, (100, 100))
+    	
+        pygame.display.flip()
         
     def on_cleanup(self): 
         pygame.quit()
