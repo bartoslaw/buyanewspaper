@@ -15,6 +15,7 @@ class Game:
                 gameobject.GameObject("bed.png", 150, 150, "Luszko"), 
                 gameobject.GameObject("desk.png", 350, 300, "Dzwi")
             ])
+        pygame.font.init()
         self.font = pygame.font.Font("assets/BebasNeue.otf", 15)
 
     def on_init(self):
